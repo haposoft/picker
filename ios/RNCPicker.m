@@ -71,7 +71,7 @@ numberOfRowsInComponent:(__unused NSInteger)component
 }
 
 - (CGFloat)pickerView:(__unused UIPickerView *)pickerView rowHeightForComponent:(NSInteger)__unused component {
-  return _font.pointSize + 19;
+  return (_font.pointSize + 19) * 1.5;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView
@@ -83,18 +83,18 @@ numberOfRowsInComponent:(__unused NSInteger)component
     label = [[UILabel alloc] initWithFrame:(CGRect){
       CGPointZero,
       {
-        [pickerView rowSizeForComponent:component].width,
+        [pickerView rowSizeForComponent:component].width - 20,
         [pickerView rowSizeForComponent:component].height,
       }
     }];
   }
 
   label.font = _font;
-
   label.textColor = [RCTConvert UIColor:_items[row][@"textColor"]] ?: _color;
-
   label.textAlignment = _textAlign;
   label.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+  label.numberOfLines = 2;
+  label.lineBreakMode = NSLineBreakByTruncatingTail;
   label.accessibilityIdentifier = _items[row][@"testID"];
   return label;
 }
