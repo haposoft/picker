@@ -71,7 +71,7 @@ numberOfRowsInComponent:(__unused NSInteger)component
 }
 
 - (CGFloat)pickerView:(__unused UIPickerView *)pickerView rowHeightForComponent:(NSInteger)__unused component {
-  return (_font.pointSize + 19) * 1.5;
+  return (_font.pointSize + 19) * 2;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView
@@ -93,7 +93,7 @@ numberOfRowsInComponent:(__unused NSInteger)component
   label.textColor = [RCTConvert UIColor:_items[row][@"textColor"]] ?: _color;
   label.textAlignment = _textAlign;
   label.text = [self pickerView:pickerView titleForRow:row forComponent:component];
-  label.numberOfLines = 2;
+  label.numberOfLines = 3;
   label.lineBreakMode = NSLineBreakByTruncatingTail;
   label.accessibilityIdentifier = _items[row][@"testID"];
   return label;
